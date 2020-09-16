@@ -1,26 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import Header from './components/layout/header';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import axios from 'axios'
+import Pokemons from './components/Pokemons';
+import PokemonDetails from './components/PokemonDetails';
+import Types from './components/Types';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+  state = {
+      pokemons:[],
+      types:[]
+  }
+  componentDidMount(){
+  
+    axios.get('https://pokeapi.co/api/v2/pokemon')
+    .then(res => this.setState({pokemons:res.data.results}))
+    
+    axios.get('https://pokeapi.co/api/v2/type')
+    .then(res=> this.setState({types:res.data.results}))
+
+  }
+
+  
+  render(){
+    //let id = 1;
+    return (
+      <Router>
+        <div className="App">
+          <div className="container">
+            <Header/>
+            <Route exact path="/pokemons" render={props =>(
+              <React.Fragment>
+                  <Pokemons pokemons={this.state.pokemons}/>
+              </React.Fragment>
+            )}/>
+            <Route path={`/pokeapi.co/api/v2/pokemon/:id`} component={PokemonDetails}></Route>
+            <Route path="/types" render={propes => (
+              <React.Fragment>
+                <Types types={this.state.types}/>
+              </React.Fragment>
+            )}/>
+          </div>  
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
