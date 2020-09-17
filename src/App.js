@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import Header from './components/layout/header';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
@@ -8,23 +8,11 @@ import PokemonDetails from './components/PokemonDetails';
 import Types from './components/Types';
 
 
-class App extends Component {
-  state = {
-      pokemons:[],
-      types:[]
-  }
-  componentDidMount(){
-  
-    axios.get('https://pokeapi.co/api/v2/pokemon')
-    .then(res => this.setState({pokemons:res.data.results}))
-    
-    axios.get('https://pokeapi.co/api/v2/type')
-    .then(res=> this.setState({types:res.data.results}))
+ function App(props){
 
-  }
 
   
-  render(){
+  
     //let id = 1;
     return (
       <Router>
@@ -33,20 +21,20 @@ class App extends Component {
             <Header/>
             <Route exact path="/pokemons" render={props =>(
               <React.Fragment>
-                  <Pokemons pokemons={this.state.pokemons}/>
+                  <Pokemons/>
               </React.Fragment>
             )}/>
             <Route path={`/pokeapi.co/api/v2/pokemon/:id`} component={PokemonDetails}></Route>
-            <Route path="/types" render={propes => (
+            <Route path="/types" render={props => (
               <React.Fragment>
-                <Types types={this.state.types}/>
+                <Types/>
               </React.Fragment>
             )}/>
           </div>  
         </div>
       </Router>
     );
-  }
 }
+
 
 export default App;
