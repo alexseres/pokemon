@@ -12,10 +12,6 @@ function Pokemons(props){
         .then(res=> setPokemons(res.data.results))
         },[]);
 
-
-
-
-
         return pokemons.map((pokemon) =>(
             <Pokemon pokemon={pokemon}/>
         ));

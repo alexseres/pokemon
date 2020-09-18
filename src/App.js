@@ -6,19 +6,21 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Pokemons from './components/Pokemons';
 import PokemonDetails from './components/PokemonDetails';
 import Types from './components/Types';
-
+import CatchedPokemons from './components/CatchedPokemons';
 import ThemeContext from './components/ThemeContext';
 import Main from './Main';
+import CatchedPokemonContext from './components/CatchedPokemonContext';
 
 
 
 function App(props){
   const themeHook = useState("light");
-
+  const catchedPokemons = useState([]);
   
     //let id = 1;
     return (
       <ThemeContext.Provider value ={themeHook}>
+        <CatchedPokemonContext.Provider value={catchedPokemons}>
         <Router>
           <div className="App">
             <div className="container">
@@ -40,9 +42,15 @@ function App(props){
                   <Types/>
                 </React.Fragment>
               )}/>
+              <Route path="/catched-pokemons" render ={props =>(
+                <React.Fragment>
+                  <CatchedPokemons/>
+                </React.Fragment>
+              )}/>
             </div>  
           </div>
         </Router>
+        </CatchedPokemonContext.Provider>
       </ThemeContext.Provider>
     );
 }

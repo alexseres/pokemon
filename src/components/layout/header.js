@@ -29,8 +29,9 @@ function Header() {
         <ThemeProvider theme={theme}>
             <header style={headerStyle}> 
                 <Title primary>Pokemon</Title>
-                <Link style={linkStyle} to="/pokemons">Pokemons</Link> |
-                <Link style={linkStyle} to="/types">Types</Link>
+                <Link style={linkStyle} to="/pokemons">Pokemons</Link>|
+                <Link style={linkStyle} to="/types"> Types</Link>|
+                <Link style={linkStyle} to="/catched-pokemons"> CatchedPokemons</Link>
                 <ThemeToggler/>
             </header>
         </ThemeProvider>
@@ -53,12 +54,6 @@ const Title = styled.h1`
         color:aqua
     }
 `;
-
-
-
-
-
-
 
 
 export default Header;
