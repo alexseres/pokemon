@@ -11,7 +11,7 @@ function Pokemons(props){
         axios('https://pokeapi.co/api/v2/pokemon')
         .then(res=> setPokemons(res.data.results))
         },[]);
-    
+
 
 
 

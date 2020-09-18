@@ -8,7 +8,6 @@ function Types(props){
         axios('https://pokeapi.co/api/v2/type')
         .then(res=> setTypes(res.data.results))
         });
-
         return types.map((type) =>(
         <h1>{type.name}</h1>
         ));

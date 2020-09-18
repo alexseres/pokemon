@@ -6,12 +6,13 @@ import axios from 'axios'
 import Pokemons from './components/Pokemons';
 import PokemonDetails from './components/PokemonDetails';
 import Types from './components/Types';
+import styled from 'styled-components';
+
+
 
 
  function App(props){
 
-
-  
   
     //let id = 1;
     return (
