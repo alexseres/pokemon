@@ -1,23 +1,16 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 
 
-class Types extends Component {
-
-    
-    
-    render() {
-
-        return this.props.types.map((type) =>(
+function Types(props){
+        const [types, setTypes] = useState([]);
+        useEffect(()=>{
+        axios('https://pokeapi.co/api/v2/type')
+        .then(res=> setTypes(res.data.results))
+        });
+        return types.map((type) =>(
         <h1>{type.name}</h1>
         ));
-            
-        
-    }
-}
-
-Types.propTypes = {
-    types: PropTypes.array.isRequired
 }
 
 export default Types
